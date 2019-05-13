@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="whiteRabbit">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Java 常见集合类Collection  Set  HashSet TreeSet LinkedHashSet  List  ArrayList LinkedList Vector   Map  HashMap LinkedHashMap Hashtable ConcurrentHashMap  1 Iterator接口1.1 Iterator&amp;lt; java.util &amp;gt; Iterat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 常见集合类">
+<meta property="og:url" content="http://yoursite.com/集合/index.html">
+<meta property="og:site_name" content="whiteRabbit">
+<meta property="og:description" content="Java 常见集合类Collection  Set  HashSet TreeSet LinkedHashSet  List  ArrayList LinkedList Vector   Map  HashMap LinkedHashMap Hashtable ConcurrentHashMap  1 Iterator接口1.1 Iterator&amp;lt; java.util &amp;gt; Iterat">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-05-13T01:32:43.512Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 常见集合类">
+<meta name="twitter:description" content="Java 常见集合类Collection  Set  HashSet TreeSet LinkedHashSet  List  ArrayList LinkedList Vector   Map  HashMap LinkedHashMap Hashtable ConcurrentHashMap  1 Iterator接口1.1 Iterator&amp;lt; java.util &amp;gt; Iterat">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/集合/">
+
+
+
+
+
+  <title>Java 常见集合类 | whiteRabbit</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">whiteRabbit</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/集合/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alex Lee">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whiteRabbit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java 常见集合类</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-13T09:26:20+08:00">
+                2019-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Java-常见集合类"><a href="#Java-常见集合类" class="headerlink" title="Java 常见集合类"></a>Java 常见集合类</h1><p>Collection</p>
+<blockquote>
+<p>Set</p>
+<blockquote>
+<p>HashSet</p>
+<p>TreeSet</p>
+<p>LinkedHashSet</p>
+</blockquote>
+<p>List</p>
+<blockquote>
+<p>ArrayList</p>
+<p>LinkedList</p>
+<p>Vector</p>
+</blockquote>
+</blockquote>
+<p>Map</p>
+<blockquote>
+<p>HashMap</p>
+<p>LinkedHashMap</p>
+<p>Hashtable</p>
+<p>ConcurrentHashMap</p>
+</blockquote>
+<h2 id="1-Iterator接口"><a href="#1-Iterator接口" class="headerlink" title="1 Iterator接口"></a>1 Iterator接口</h2><h3 id="1-1-Iterator"><a href="#1-1-Iterator" class="headerlink" title="1.1 Iterator"></a>1.1 Iterator</h3><p><strong>&lt; java.util &gt; Iterator：是一个接口，其作用：取集合中的元素。</strong></p>
+<p>在Iterator接口中定义了三个方法：</p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boolean</td>
+<td>hasNext() 如果仍有元素可以迭代，则返回true</td>
+</tr>
+<tr>
+<td>E</td>
+<td>next() 返回迭代的下一个元素</td>
+</tr>
+<tr>
+<td>void</td>
+<td>remove() 从迭代器指向的collection中移除迭代器返回的最后一个元素</td>
+</tr>
+</tbody>
+</table>
+<p>每一个集合都有自己的数据结构(就是容器中存储数据的方式)，都有特定的取出自己内部元素的方式。为了便于操作所有的容器，取出元素。将容器内部的取出方式按照一个统一的规则向外提供，这个规则就是Iterator接口，使得对容器的遍历操作与其具体的底层实现相隔离，达到解耦的效果。</p>
+<p>也就说，只要通过该接口就可以取出Collection集合中的元素，至于每一个具体的容器依据自己的数据结构，如何实现的具体取出细节，这个不用关心，这样就降低了取出元素和具体集合的耦合性。 </p>
+<p><strong>Iterator it = coll.iterator(); </strong> //获取容器中的迭代器对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       Collection coll = <span class="keyword">new</span> ArrayList();</span><br><span class="line">       coll.add(<span class="string">"abc0"</span>);</span><br><span class="line">       coll.add(<span class="string">"abc1"</span>);</span><br><span class="line">       coll.add(<span class="string">"abc2"</span>);</span><br><span class="line">       <span class="comment">//--------------方式1----------------------</span></span><br><span class="line">       Iterator it = coll.iterator();</span><br><span class="line">       <span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">           System.out.println(it.next());</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//---------------方式2用此种----------------</span></span><br><span class="line">       <span class="keyword">for</span>(Iterator it =coll.iterator();it.hasNext(); )&#123;</span><br><span class="line">           System.out.println(it.next());</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>使用Iterator迭代器来进行删除，则不会出现并发修改异常。</p>
+<p>因为：在执行remove操作时，同样先执行checkForComodification()，然后会执行ArrayList的remove()方法，该方法会将modCount值加1，这里我们将expectedModCount=modCount，使之保持统一。</p>
+<h3 id="1-2-ListIterator"><a href="#1-2-ListIterator" class="headerlink" title="1.2 ListIterator"></a>1.2 ListIterator</h3><p>从上面可以看出，Iterator只提供了删除元素的方法remove()，并不能在遍历的时候添加元素。</p>
+<p><strong>ListIterator</strong> 接口继承了 <strong>Iterator</strong> 接口，它允许我们按照任一方向遍历列表（双向遍历），迭代期间修改列表，并获取迭代器在列表的当前位置。</p>
+<p>使用 <strong>ListIterator</strong> 来对 <strong>list</strong> 进行边遍历边添加元素的操作：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">       ArrayList&lt;String&gt; aList = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">       aList.add(<span class="string">"bbc"</span>);</span><br><span class="line">       aList.add(<span class="string">"abc"</span>);</span><br><span class="line">       aList.add(<span class="string">"ysc"</span>);</span><br><span class="line">       aList.add(<span class="string">"saa"</span>);</span><br><span class="line">       System.out.println(<span class="string">"移除前："</span> + aList);</span><br><span class="line">       ListIterator&lt;String&gt; listIt = aList.listIterator();</span><br><span class="line">        <span class="keyword">while</span>(listIt.hasNext())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="string">"abc"</span>.equals(listIt.next()))</span><br><span class="line">            &#123;</span><br><span class="line">               listIt.add(<span class="string">"haha"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">       System.out.println(<span class="string">"移除后："</span> + aList);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-Collection-接口"><a href="#2-Collection-接口" class="headerlink" title="2 Collection 接口"></a>2 Collection 接口</h2><p><strong>&lt; java.util &gt; Collection接口：</strong></p>
+<p><strong>Collection:</strong></p>
+<blockquote>
+<p><strong>List：有序（元素存入集合的顺序和取出的顺序一致），元素都有索引，可以重复。</strong></p>
+<p><strong>Set：无序（元素存入和取出的顺序可能不一致），不可用存储重复元素，必须保证元素的唯一性。</strong></p>
+</blockquote>
+<p><strong>1. 添加：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">add(Object obj)：添加一个元素</span><br><span class="line"></span><br><span class="line">addAll(Collection coll)：添加一个集合中的所有元素</span><br></pre></td></tr></table></figure>
+<p><strong>2. 删除：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">clear()：将集合中的元素全部删除，清空集合</span><br><span class="line"></span><br><span class="line">remove(Object obj)：删除集合中指定的对象，注意：删除成功，集合的长度会改变</span><br><span class="line"></span><br><span class="line">removeAll(Collection coll)：删除部分元素，部分元素和coll一致</span><br></pre></td></tr></table></figure>
+<p><strong>3. 判断：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">boolean contains(Object obj)：集合中是否包含指定元素</span><br><span class="line"></span><br><span class="line">boolean containsAll(Collection coll)：集合中是否包含coll中的全部元素</span><br><span class="line"></span><br><span class="line">boolean isEmpty()：集合是否为空</span><br></pre></td></tr></table></figure>
+<p><strong>4. 获取：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int size()：集合中有几个元素</span><br></pre></td></tr></table></figure>
+<p><strong>5. 取交集：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boolean retainAll(Collection coll)：对当前集合中保留的和指定的集合coll中的相同的元素，如果两个集合的元素相同，则返回false；如果retainAll修改了当前集合，返回true</span><br></pre></td></tr></table></figure>
+<p><strong>6. 获取集合中所有的元素：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Iterator iterator()：迭代器</span><br></pre></td></tr></table></figure>
+<p><strong>7. 将集合变成数组：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">toArray();</span><br></pre></td></tr></table></figure>
+<h3 id="2-1-List接口"><a href="#2-1-List接口" class="headerlink" title="2.1 List接口"></a>2.1 List接口</h3><p><strong>&lt; java.util &gt; List接口：</strong></p>
+<p>本身是Collection接口的子接口，具备了Collection的所有方法。</p>
+<p><strong>List</strong>：有序(元素存入集合的顺序和取出的顺序一致)元素都有索引。元素可以重复。（有序可重复）</p>
+<blockquote>
+<p><strong>ArrayList</strong>：底层的数据结构是<strong>数组</strong>，并且是<strong>线程不同步的</strong>，ArrayList替代了Vector，查询元素的速度非常快。默认大小10，1.5倍长度扩容。</p>
+<p><strong>LinkedList</strong>：底层的数据结构是<strong>链表</strong>，并且是<strong>线程不同步的</strong>，增删元素的速度非常快。</p>
+<p><strong>Vector</strong>：底层的数据结构是<strong>数组</strong>，并且是<strong>线程同步的</strong>，Vector无论查询还是增删速度都非常慢。默认大小10，2倍长度扩容。</p>
+</blockquote>
+<p><strong>1. 添加：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">add(E e)：在末尾添加元素</span><br><span class="line"></span><br><span class="line">add(int index, E e)：在指定的索引处添加元素</span><br><span class="line"></span><br><span class="line">addAll(int index, Collection coll)：在指定索引处插入一堆元素</span><br></pre></td></tr></table></figure>
+<p><strong>2. 删除：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">remove(int index)**：删除指定索引的元素，返回被删的元素。</span><br></pre></td></tr></table></figure>
+<p><strong>3. 获取：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Object get(int index)**：获取指定索引的元素</span><br><span class="line"></span><br><span class="line">int indexOf(Object obj)**：获取指定对象第一次出现的索引，如果改元素不存在则返会-1；所以可以通过-1判断一个元素是否存在</span><br><span class="line"></span><br><span class="line">int lastIndexOf(Object obj)**：获取指定对象最后一次出现的位置</span><br><span class="line"></span><br><span class="line">List subList(int start, int end)**：获取指定索引的子列表</span><br></pre></td></tr></table></figure>
+<p><strong>4. 修改：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object set(int index, E e)**：修改指定索引的值</span><br></pre></td></tr></table></figure>
+<p><strong>5. 获取所有的元素：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LisIterator listIterator()**：list集合特有的迭代器</span><br></pre></td></tr></table></figure>
+<p><strong>List</strong> 集合支持对元素的增、删、改、查</p>
+<p>在进行list列表元素迭代的时候，如果想要在迭代过程中，想要对元素进行操作的时候，比如满足条件添加新元素或删除元素。<strong>会发生ConcurrentModificationException并发修改异常。</strong></p>
+<p><strong>原因</strong>：集合引用和迭代器引用在同时操作元素，通过集合获取到对应的迭代器后，在迭代中，进行集合引用的元素添加，迭代器并不知道，所以会出现异常情况。</p>
+<p><strong>解决方法</strong>：既然是在迭代中对元素进行操作，找迭代器的方法最为合适。可是Iterator中只有hasNext，next，remove方法。通过查阅的它的子接口，<strong>ListIterator</strong>，发现该列表迭代器接口具备了对元素的增、删、改、查的动作。</p>
+<p><strong>ListIterator是List集合特有的迭代器</strong>。</p>
+<p>ListIterator it =list.listIterator;//取代Iterator it = list.iterator;</p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>void</td>
+<td>add(E e) 将指定元素插入列表。</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>hasNext() 以正向遍历列表时，如果列表迭代器有多个元素，则返回true（换句话说，如果 next 返回一个元素而不是抛出异常，则返回 true）。</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>hasPrevious() 如果以逆向遍历列表，列表迭代器有多个元素，则返回true。</td>
+</tr>
+<tr>
+<td>E</td>
+<td>next() 返回列表中的下一个元素。</td>
+</tr>
+<tr>
+<td>int</td>
+<td>nextIndex() 返回对 next 的后续调用所返回元素的索引。</td>
+</tr>
+<tr>
+<td>E</td>
+<td>previous() 返回列表中的前一个元素。</td>
+</tr>
+<tr>
+<td>int</td>
+<td>previousIndex() 返回对previous 的后续调用所返回元素的索引。</td>
+</tr>
+<tr>
+<td>void</td>
+<td>remove() 从列表中移除由 next 或 previous 返回的最后一个元素。</td>
+</tr>
+<tr>
+<td>void</td>
+<td>set(E e) 用指定元素替换 next 或 previous 返回的最后一个元素。</td>
+</tr>
+</tbody>
+</table>
+<p>可变长度数组的原理：</p>
+<p>当元素超出数组长度，会产生一个新数组，将原数组的数据复制到新数组中，再将新的元素添加到新数组中。</p>
+<p>ArrayList：是按照原数组的50%延长。构造一个初始容量为 10 的空列表。<br>Vector：是按照原数组的100%延长。</p>
+<p>注意：对于list集合，底层判断元素是否相同，其实用的是元素自身的equals方法完成的。所以建议元素都要复写equals方法，建立元素对象自己的比较相同的条件依据。</p>
+<p><strong>LinkedList：的特有方法。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">addFirst();</span><br><span class="line"></span><br><span class="line">addLast();</span><br></pre></td></tr></table></figure>
+<p>在jdk1.6以后。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">offerFirst();</span><br><span class="line"></span><br><span class="line">offerLast();</span><br><span class="line"></span><br><span class="line">getFirst():获取链表中的第一个元素。如果链表为空，抛出NoSuchElementException;</span><br><span class="line"></span><br><span class="line">getLast();获取链表中的最后一个元素。如果链表为空，抛出NoSuchElementException;</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-Set接口"><a href="#2-2-Set接口" class="headerlink" title="2.2 Set接口"></a>2.2 Set接口</h3><p><strong>&lt; java.util &gt; Set接口：</strong></p>
+<p>本身是Collection接口的子接口，具备了Collection的所有方法。Set接口取出方式只有一种，<strong>迭代器</strong>。</p>
+<p><strong>Set ：无序，add()相同元素则添加失败，返回false。</strong></p>
+<blockquote>
+<p><strong>HashSet</strong>：底层结构是<strong>哈希表，无序，高效，线程不同步。</strong></p>
+<blockquote>
+<p><strong>LinkedHashSet</strong>：存取顺序一致（用链表维护），<strong>线程不同步</strong>，是HashSet的子类。</p>
+</blockquote>
+<p><strong>TreeSet</strong>：底层数据结构是<strong>平衡二叉树</strong>，元素唯一，有序（按照元素自身执行顺序），<strong>线程不同步（不按原有数组顺序）</strong>。</p>
+<p><strong>EnumSet</strong>：只能保存同一类型元素。</p>
+</blockquote>
+<p><strong>HashSet、TreeSet、LinkedHashSet的区别</strong>：HashSet只去重，TreeSet去重并排序，LinkedHashSet去重并保留插入顺序</p>
+<p><strong>===HashSet 哈希表原理===</strong></p>
+<p>采用<strong>哈希表</strong>存储结构。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1：对对象元素中的关键字进行哈希算法运算，得结果为哈希值（也是这个元素的位置）。</span><br><span class="line"></span><br><span class="line">2：存储哈希值的结构，我们称为哈希表，在哈希表中查找对应的哈希值对应位置;</span><br><span class="line"></span><br><span class="line">3：如果哈希值出现冲突，再次判断这个关键字对应的对象是否相同;</span><br><span class="line">如果对象相同，就不存储，因为元素重复；</span><br><span class="line">如果对象不同，就存储，在原来对象的哈希值基础 +1顺延。</span><br><span class="line"></span><br><span class="line">4：既然哈希表根据哈希值存储，为提高效率，最好保证对象关键字的唯一性。   可尽量少的判断关键字对应的对象是否相同，提高了哈希表的操作效率。</span><br></pre></td></tr></table></figure>
+<p>HashSet集合保证<strong>元素唯一性</strong>：通过元素的<strong>hashCode()</strong>和<strong>equals()</strong>完成的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">当元素的hashCode值相同时，才继续判断元素的equals是否为true。</span><br><span class="line"></span><br><span class="line">如果为true，那么视为相同元素，不存储。如果为false，那么存储。</span><br><span class="line"></span><br><span class="line">如果hashCode值不同，那么不判断equals，从而提高对象比较的速度。</span><br><span class="line"></span><br><span class="line">对于ArrayList集合，判断元素是否存在，或者删元素底层依据都是equals方法。</span><br><span class="line"></span><br><span class="line">对于HashSet集合，判断元素是否存在，或者删除元素，底层依据的是hashCode方法和equals方法。</span><br></pre></td></tr></table></figure>
+<p><strong>===TreeSet原理===</strong></p>
+<p>采用<strong>二叉树（二叉平衡排序树</strong>）存储结构 （或红黑树）</p>
+<p>TreeSet用于对Set集合进行元素的指定顺序排序，要依据元素自身的比较性（  如果元素不具备比较性，在运行时会发生ClassCastException异常）所以需要元素实现<strong>Comparable</strong>接口，复写<strong>compareTo</strong>方法（根据指定需求），强制让对象元素具备比较性，否则比较时引发ClassCastException异常。</p>
+<p>TreeSet支持两种排序方法：自然排序和定制排序；默认采用自然排序。</p>
+<p>原理：当把一个对象（必须实现Comparable接口）添加进TreeSet时，TreeSet调用该对象的<strong>compareTo(Object obj)</strong>方法与容器中的其他对象比较大小，然后根据红黑树算法决定它的存储位置。 如果两个对象通过compareTo比较相等，return 0，视为两对象重复，不存储。（通过此方法保证了对象的唯一性）</p>
+<p>注意：在进行比较时，如果判断元素不唯一，比如，同姓名，同年龄，才视为同一个人。</p>
+<p>在判断时，需要分主要、次要条件，当主要条件相同时，再判断次要条件，按照次要条件排序。</p>
+<p>TreeSet集合排序有两种方式，Comparable和Comparator区别：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1：让元素自身具备比较性，需要元素对象实现Comparable接口，覆盖compareTo方法。</span><br><span class="line"></span><br><span class="line">2：让集合自身具备比较性，需要定义一个实现了Comparator接口的比较器，并覆盖compare方法，并将该类对象作为实际参数传递给TreeSet集合的构造函数。第二种方式较为灵活。</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-Map-接口"><a href="#3-Map-接口" class="headerlink" title="3 Map 接口"></a>3 Map 接口</h2><p><strong>Map：</strong></p>
+<blockquote>
+<p><strong>Hashtable</strong>：底层数据结构是<strong>哈希散列表，线程同步，不可以存储null键，null值。</strong>不可序列化，使用bucket结构体表示单个元素，使用双重散列法（闭散列法）解决冲突（二度哈希，size&gt;length时要进行模运算）。</p>
+<p><strong>HashMap</strong>：底层数据结构是<strong>哈希表（链地址法解决冲突），线程不同步，可存一个null键和多个null值。</strong>替代了Hashtable. 但可通过Map m = Collections.synchronizeMap(hashMap)实现同步。</p>
+<blockquote>
+<p><strong>LinkedHashMap</strong>：采用<strong>双向链表</strong>数据结构连接起来所有的entry，保证了存入和取出顺序一致，即链表有序；<strong>线程不同步</strong>。</p>
+</blockquote>
+<p><strong>TreeMap</strong>：底层数据结构是<strong>二叉树（平衡二叉排序树）</strong>，可以对map集合中的键进行指定顺序的排序。</p>
+</blockquote>
+<p>Map集合存储和Collection有着很大不同：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Collection一次存一个元素，是单列集合</span><br><span class="line"></span><br><span class="line">Map一次存一对元素，是双列集合。Map存储的一对元素：键--值，键（key）与值（value）间有对应（映射）关系。</span><br></pre></td></tr></table></figure>
+<p><strong>特点：要保证Map中键的唯一性。</strong></p>
+<p><strong>1. 添加：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">put(key, value)：当存储的键相同时，新的值会替换老的值，并将老值返回。如果键没有重复，返回null。</span><br><span class="line"></span><br><span class="line">void putAll(Map);</span><br></pre></td></tr></table></figure>
+<p><strong>2. 删除：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void clear()：清空</span><br><span class="line"></span><br><span class="line">value remove(key)：删除指定值</span><br></pre></td></tr></table></figure>
+<p><strong>3. 判断：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">boolean isEmpty()：是否为空</span><br><span class="line"></span><br><span class="line">boolean containsKey(key)：是否包含key</span><br><span class="line"></span><br><span class="line">boolean containsValue(value)：是否包含value</span><br></pre></td></tr></table></figure>
+<p><strong>4. 取出：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int size()：返回长度</span><br><span class="line"></span><br><span class="line">value get(key)：通过指定键获取对应的值。如果返回null，可以判断该键不存在。在HashMap集合中，是可以存储null键和null值的。</span><br><span class="line"></span><br><span class="line">Collection values()：获取map集合中所有的值（value）。</span><br></pre></td></tr></table></figure>
+<p><strong>5. 获取Map中所有的元素：</strong></p>
+<p><strong>原理：</strong>map没有迭代器，collection具备迭代器，只要<strong>将Map转成Set集合</strong>，就可使用迭代器。map集合具备<strong>键的唯一性</strong>，其实set集合就来自于map，set集合底层使用的就是map的方法。</p>
+<p>把map集合转成set的方法：（决定了两种遍历方式）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Set keySet();</span><br><span class="line">Set entrySet();//取的是键和值的映射关系</span><br></pre></td></tr></table></figure>
+<p>Entry就是Map接口中的内部接口；</p>
+<p><strong>取出map集合中所有元素的方式一：keySet()方法</strong></p>
+<p>可以将map集合中的键都取出存放到set集合中，对set集合进行迭代。迭代完成，再通过get方法对获取到的键进行值的获取。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Set keySet = map.keySet();</span><br><span class="line">Iterator it = keySet.iterator();</span><br><span class="line">while(it.hasNext()) &#123;</span><br><span class="line">	Object key = it.next();</span><br><span class="line">	Object value = map.get(key);</span><br><span class="line">	System.out.println(key + &quot;:&quot; + value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>取出map集合中所有元素的方式二：entrySet()方法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Set entrySet = map.entrySet();</span><br><span class="line">Iterator it = entrySet.iterator();</span><br><span class="line">while(it.hasNext()) &#123;</span><br><span class="line">	Map.Entry entry = (Map.Entry)it.next();</span><br><span class="line">	System.out.println(entry.getKey() + &quot;:&quot; + entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>使用集合的技巧：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">看到Array就是数据结构，有下标，查询速度很快。</span><br><span class="line"></span><br><span class="line">看到link就是链表结构：增删速度快，而且有特有方法。addFirst()；addLast()；removeFirst()；removeLast()；getFirst()；getLast（）；</span><br><span class="line"></span><br><span class="line">看到hash就是哈希表，就要想要哈希值，就要想到唯一性，就要想到存入到该结构中的元素必须覆盖hashCode和equals方法。</span><br><span class="line"></span><br><span class="line">看到tree就是二叉树，就要想到排序，就想要用到比较。</span><br></pre></td></tr></table></figure>
+<p><strong>比较的两种方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">一个是Comparable：覆盖compareTo方法；</span><br><span class="line">一个是Comparator：覆盖compare方法。</span><br></pre></td></tr></table></figure>
+<p><strong>LinkedHashSet，LinkedHashMap</strong>：这两个集合可以保证哈希表有存入顺序和取出顺序一致，保证哈希表有序。</p>
+<p><strong>集合使用场景：</strong></p>
+<p>当存储一个元素时，用<strong>Collection</strong>。当存储对象之间存在着映射关系时，用Map集合。</p>
+<p><strong>保证唯一，就用Set。不保证唯一，就用List。</strong></p>
+<h2 id="4-综合总结"><a href="#4-综合总结" class="headerlink" title="4 综合总结"></a>4 综合总结</h2><h3 id="4-1-集合工具类Collections"><a href="#4-1-集合工具类Collections" class="headerlink" title="4.1 集合工具类Collections"></a>4.1 集合工具类Collections</h3><p><strong>Collections：集合工具类</strong>，它的出现给集合操作提供了更多的功能。这个类不需要创建对象，内部提供的都是静态方法。</p>
+<p><strong>静态方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Collections.sort(list);//list集合进行元素的自然顺序排序。</span><br><span class="line"></span><br><span class="line">Collections.sort(list,new ComparatorByLen());//按指定的比较器方法排序。</span><br><span class="line"></span><br><span class="line">class ComparatorByLen implements Comparator&lt;String&gt;&#123;</span><br><span class="line">  public int compare(String s1,String s2)&#123;</span><br><span class="line">     int temp = s1.length()-s2.length();</span><br><span class="line">     return temp==0?s1.compareTo(s2):temp;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Collections.max(list);//返回list中字典顺序最大的元素。</span><br><span class="line"></span><br><span class="line">int index = Collections.binarySearch(list,&quot;zz&quot;);//二分查找，返回下标。</span><br><span class="line"></span><br><span class="line">Collections.reverseOrder();//逆向反转排序。</span><br><span class="line"></span><br><span class="line">Collections.shuffle(list);//随机对list中的元素进行位置的置换。</span><br></pre></td></tr></table></figure>
+<p>将非同步集合转成同步集合的方法：Collections中的XXX synchronizedXXX(XXX)；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List synchronizedList(list);</span><br><span class="line"></span><br><span class="line">Map synchronizedMap(map);</span><br></pre></td></tr></table></figure>
+<p><strong>原理：定义一个类，将集合所有的方法加同一把锁后返回。</strong></p>
+<p><strong>Collection和Collections的区别：</strong></p>
+<p>Collections是个java.util下的类，是针对集合类的一个工具类，提供一系列静态方法，实现对集合的查找、排序、替换、线程安全性（将非同步的集合转换成同步的）等操作。</p>
+<p>Collection是个java.util下的接口，它是各种集合结构的接口，继承于它的接口注意有Set和List，提供了关于集合的一些操作，如插入、删除、判断一个元素是否其成员、遍历等。</p>
+<h3 id="4-2-数组工具类-Arrays"><a href="#4-2-数组工具类-Arrays" class="headerlink" title="4.2 数组工具类 Arrays"></a>4.2 数组工具类 Arrays</h3><p>用于操作数组对象的工具类，里面都是静态方法。</p>
+<p><strong>数组 =&gt; 集合</strong>：aList方法，将数组转换成ilst集合。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String[] arr = &#123;&quot;abc&quot;, &quot;kk&quot;, &quot;qq&quot;&#125;;</span><br><span class="line"></span><br><span class="line">List&lt;String&gt; list = Arrays.asList(arr);//将arr数组转成list集合</span><br></pre></td></tr></table></figure>
+<p>可以通过list集合中的方法来操作数组中的元素：isEmpty()、contains、indexOf、set；</p>
+<p><strong>注意（局限性）</strong>：数组是固定长度，不可以使用集合对象增加或者删除等，会改变数组长度的功能方法。比如add、remove、clear。（会报不支持操作异常UnsuppotredOperationException）;</p>
+<p>如果数组中存储的<strong>引用数据</strong>类型，直接作为集合的元素可以用集合方法操作。</p>
+<p>如果数组中存储的是<strong>基本数据</strong>类型，aslist会将数组实体作为集合元素存在。</p>
+<p><strong>集合=&gt;数组</strong>：用的是Collection接口中的toArray()方法；</p>
+<p>如果给toArray传递的指定类型的数据长度小于了集合的size，那么toArray方法，会自定再创建一个该类型的数据，长度为集合的size。</p>
+<p>如果传递的指定的类型的数组的长度大于了集合的size，那么toArray方法，就不会创建新数组，直接使用该数组即可，并将集合中的元素存储到数组中，其他为存储元素的位置默认值null。</p>
+<p>所以，在传递指定类型数组时，最好的方式就是指定的长度和size相等的数组。</p>
+<h3 id="4-3-LinkedHashSet和LinkedHashMap比较"><a href="#4-3-LinkedHashSet和LinkedHashMap比较" class="headerlink" title="4.3 LinkedHashSet和LinkedHashMap比较"></a>4.3 LinkedHashSet和LinkedHashMap比较</h3><p>两者实现相同，只是前者对后者做了一层包装，即LinkedHashSet里面有一个<strong>LinkedHashMap（适配器模式）</strong>。下面说其实现。</p>
+<p><strong>LinkedHashMap，可存null键null值</strong>，从名字上可以看出是linkedList和hashMap的混合体，同时满足HashMap和linkedList的某些特性。可将LinkedHashMap看作采用linkedList增强的HashMap。</p>
+<p>事实上LinkedHashMap是HashMap的直接子类，LinkedHashMap在HashMap的基础上采用<strong>双向链表</strong>的形式将所有entry连接起来，保证元素的迭代顺序跟插入顺序相同。</p>
+<p>有两个参数可以影响LinkedHashMap的性能：<strong>初始容量和负载系数</strong>。初始容量指定了初始table的大小，负载系数用在指定自动扩容的临界值。当entry的数量超过capacity*load_factor时，容器将自动扩容并<strong>重新哈希</strong>。对于插入元素较多的场景，将初始容量设大可以减少重新哈希的次数。</p>
+<p>向LinkedHashMap或LinkedHashSet添加对象时，需要关心两个方法：<strong>hashCode()方法决定了对象会被放到哪个bucket里，当多个对象的哈希值冲突时，equals()方法决定了这些这些对象是否是“同一个对象”</strong>。此时需要将自定义的对象<strong><em>@Override</em></strong> hashCode()和equals()方法</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alex Lee</p>
+              <p class="site-description motion-element" itemprop="description">whiteRabbit的个人博客：学习总结，思考感悟等</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-常见集合类"><span class="nav-number">1.</span> <span class="nav-text">Java 常见集合类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Iterator接口"><span class="nav-number">1.1.</span> <span class="nav-text">1 Iterator接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Iterator"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 Iterator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-ListIterator"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 ListIterator</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Collection-接口"><span class="nav-number">1.2.</span> <span class="nav-text">2 Collection 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-List接口"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 List接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Set接口"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 Set接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Map-接口"><span class="nav-number">1.3.</span> <span class="nav-text">3 Map 接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-综合总结"><span class="nav-number">1.4.</span> <span class="nav-text">4 综合总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-集合工具类Collections"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 集合工具类Collections</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-数组工具类-Arrays"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 数组工具类 Arrays</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-LinkedHashSet和LinkedHashMap比较"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3 LinkedHashSet和LinkedHashMap比较</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alex Lee</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
